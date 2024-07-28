@@ -1,0 +1,16 @@
+{% extends "events/base.html" %}
+
+{% block title %}Detalhes do Evento{% endblock %}
+
+{% block content %}
+    <h1 class="mt-4">{{ event.title }}</h1>
+    <p>{{ event.description }}</p>
+    <p><strong>Data de Início:</strong> {{ event.start_date }}</p>
+    <p><strong>Data de Fim:</strong> {{ event.end_date }}</p>
+    <p><strong>Local:</strong> {{ event.location }}</p>
+    <form action="{% url 'register_for_event' event.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Inscrever-se</button>
+    </form>
+    <a href="{% url 'event_list' %}" class="btn btn-secondary mt-3">Voltar para a lista de eventos</a>
+{% endblock %}
